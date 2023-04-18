@@ -55,7 +55,8 @@ CREATE TABLE T_B_STATUS (
                        );
 
 CREATE SEQUENCE SEQ_T_B_STATUS_RENT_NO NOCACHE; 
-ALTER TABLE T_B_STATUS modify reg_no unique;
+ALTER TABLE T_B_STATUS modify rent_date varchar2(10) default to_char(sysdate, 'yyyy-mm-dd');
+ALTER TABLE T_B_STATUS modify return_date varchar2(10) default to_char(sysdate +14 , 'yyyy-mm-dd');
 DELETE  FROM T_B_STATUS;      
 
                             
@@ -103,8 +104,7 @@ select b1.reg_no, b1.title, b1.writer, publisher, issue_year, case when s1.rent_
 select s1.reg_no, title, rent_date, return_date
   from t_b_status s1
   join t_book b1      on b1.reg_no = s1.reg_no
-  join t_member m1    on m1.id = s1.rent_id
- where id = 'aaa' ;
+ where rent_id = 'aaa' ;
                    
 update t_member
    set pw = ?
