@@ -6,21 +6,21 @@ public class BookVO {
 	private String title;
 	private String writer;
 	private String publisher;
-	private String issueYear;
-	private int stock;
+	private int issueYear;
+	private String status;
 	
 	public BookVO() {
 		
 	}
 
-	public BookVO(int regNo, String title, String writer, String publisher, String issueYear, int stock) {
+	public BookVO(int regNo, String title, String writer, String publisher, int issueYear, String status) {
 		super();
 		this.regNo = regNo;
 		this.title = title;
 		this.writer = writer;
 		this.publisher = publisher;
 		this.issueYear = issueYear;
-		this.stock = stock;
+		this.status = status;
 	}
 
 	public int getRegNo() {
@@ -55,27 +55,32 @@ public class BookVO {
 		this.publisher = publisher;
 	}
 
-	public String getIssueYear() {
+	public int getIssueYear() {
 		return issueYear;
 	}
 
-	public void setIssueYear(String issueYear) {
+	public void setIssueYear(int issueYear) {
 		this.issueYear = issueYear;
 	}
 
-	public int getStock() {
-		return stock;
+
+	public String getStatus() {
+		return status;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
 		return "BookVO [regNo=" + regNo + ", title=" + title + ", writer=" + writer + ", publisher=" + publisher
-				+ ", issueYear=" + issueYear + ", stock=" + stock + "]";
+				+ ", issueYear=" + issueYear + ", status=" + status + "]";
 	}
+	
+	
+	
+	
 
 	
 }

@@ -27,10 +27,23 @@ public class JoinMemberUI extends BaseUI{
 			
 			id = scanStr("아이디 : ");
 		};
-		String pw = scanStr("비밀번호 : ");
+		String pw = scanStr("비밀번호 입력 : ");
+		String pw2 = scanStr("비밀번호 확인 : ");
+		if(!pw.equals(pw2)) {
+			System.out.println("비밀번호를 동일하게 입력해 주세요.");
+			pw = scanStr("비밀번호 입력 : ");
+			pw2 = scanStr("비밀번호 확인 : ");
+		}
+		
 		String name = scanStr("이름 : ");
 		String address = scanStr("주소(군/구 까지 입력) : ");
 		String phoneNum = scanStr("핸드폰 번호(- 없이 숫자만 입력): ");
+		
+		while (phoneNum.length() > 11 ) {
+			System.out.println("핸드폰 번호는 11글자를 넘을 수 없습니다.");
+			System.out.println("다시 입력해주세요.");
+			phoneNum = scanStr("핸드폰 번호(- 없이 숫자만 입력): ");
+		}
 		
 		MemberVO member = new MemberVO();
 		member.setId(id);

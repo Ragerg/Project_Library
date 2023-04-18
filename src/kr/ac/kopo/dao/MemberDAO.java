@@ -80,6 +80,34 @@ public class MemberDAO {
 		
 		return logIn;
 	}
+	
+	//마이페이지
+		public MemberVO MemberPage(String id) {
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from t_member where id = ? ");
+			
+			MemberVO member = new MemberVO();
+			
+			try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+			) {
+				pstmt.setString(1, id);
+				
+				ResultSet rs = pstmt.executeQuery();
+				if(rs.next()) {
+					member.setName(rs.getString("name"));
+					member.setAddress(rs.getString("address"));
+					member.setPhoneNum(rs.getString("phone_num"));
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return member;
+		}
 
 	
 }
