@@ -31,6 +31,8 @@ CREATE TABLE T_BOOK(
                    ,PUBLISHER   VARCHAR2(100)
                    ,ISSUE_YEAR  NUMBER(4)
                    );
+                   
+                   
 --대여 테이블 생성                  
 CREATE TABLE T_B_STATUS (
                          RENT_NO     NUMBER(5)      PRIMARY KEY     
@@ -44,6 +46,9 @@ CREATE TABLE T_B_STATUS (
                         ,RENT_DATE   VARCHAR2(10)   DEFAULT TO_CHAR(SYSDATE    , 'YYYY-MM-DD')
                         ,RETURN_DATE VARCHAR2(10)   DEFAULT TO_CHAR(SYSDATE +14, 'YYYY-MM-DD')
                        );   
+                       
+                       
+                       
 --회원 테이블 생성                     
 CREATE TABLE T_MEMBER (
                        ID        VARCHAR(20)   PRIMARY KEY
