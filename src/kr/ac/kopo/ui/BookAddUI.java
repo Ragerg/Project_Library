@@ -25,6 +25,12 @@ public class BookAddUI extends BaseUI {
 		String publisher = scanStr("출판사 : ");
 		int issueYear = scanInt("발행연도 : ");
 		
+		while (issueYear > 9999 || issueYear < 999) {
+			System.out.println("발행연도는 4자리를 넘을 수 없습니다.");
+			System.out.println("다시 입력해주세요.");
+			issueYear = scanInt("발행연도 : ");
+		}
+		
 		BookVO book = new BookVO();
 		book.setTitle(title);
 		book.setWriter(writer);

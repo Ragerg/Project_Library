@@ -26,7 +26,7 @@ public class BookModifyUI extends BaseUI {
 
 			switch (choice) {
 			case 1:
-				int regNo = scanInt("수정할 도서의 번호를 선택해 주세요.");
+				int regNo = scanInt("수정할 도서의 번호를 선택해 주세요.\n");
 				if (!bookService.noCheck(regNo)) {
 					System.out.println("없는 도서입니다.");
 					System.out.println("다시 입력해 주세요.");
@@ -53,9 +53,10 @@ public class BookModifyUI extends BaseUI {
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
+				ui = new SearchNoUI(regNo);
 				break;
 			case 2:
-				regNo = scanInt("수정할 도서의 번호를 선택해 주세요.");
+				regNo = scanInt("수정할 도서의 번호를 선택해 주세요.\n");
 				if (!bookService.noCheck(regNo)) {
 					System.out.println("없는 도서입니다.");
 					System.out.println("다시 입력해 주세요.");
@@ -82,9 +83,10 @@ public class BookModifyUI extends BaseUI {
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
+				ui = new SearchNoUI(regNo);
 				break;
 			case 3:
-				regNo = scanInt("수정할 도서의 번호를 선택해 주세요.");
+				regNo = scanInt("수정할 도서의 번호를 선택해 주세요.\n");
 				if (!bookService.noCheck(regNo)) {
 					System.out.println("없는 도서입니다.");
 					System.out.println("다시 입력해 주세요.");
@@ -110,16 +112,24 @@ public class BookModifyUI extends BaseUI {
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
+				ui = new SearchNoUI(regNo);
 				break;
 			case 4:
-				regNo = scanInt("수정할 도서의 번호를 선택해 주세요.");
+				regNo = scanInt("수정할 도서의 번호를 선택해 주세요.\n");
 				if (!bookService.noCheck(regNo)) {
 					System.out.println("없는 도서입니다.");
 					System.out.println("다시 입력해 주세요.");
 					
 					regNo = scanInt("수정할 도서의 번호를 선택해 주세요.");
 				};
-				String issueYear2 = scanStr("발행연도 : ");
+				
+				
+				int issueYear2 = scanInt("발행연도 : ");
+				while (issueYear2 > 9999 || issueYear2 < 999) {
+					System.out.println("발행연도는 4자리를 넘을 수 없습니다.");
+					System.out.println("다시 입력해주세요.");
+					issueYear2 = scanInt("발행연도 : ");
+				}
 				sql = new StringBuilder();
 				sql.append("update t_book ");
 				sql.append(" set issue_Year = ? ");
@@ -129,7 +139,7 @@ public class BookModifyUI extends BaseUI {
 					Connection conn = new ConnectionFactory().getConnection();
 					PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 				) {
-					pstmt.setString(1, issueYear2);
+					pstmt.setInt(1, issueYear2);
 					pstmt.setInt(2, regNo);
 					
 					pstmt.executeUpdate();
@@ -138,18 +148,18 @@ public class BookModifyUI extends BaseUI {
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
+				ui = new SearchNoUI(regNo);
 				break;
 			case 5 :
 					ui = new ManagerUI();
-					ui.execute();
 					break;
 			case 0:
 				ui = new ExitUI();
-				ui.execute();
 				break;
 			default : System.out.println("잘못 입력하셨습니다");
 				
 			}
+			ui.execute();
 
 		}
 	}

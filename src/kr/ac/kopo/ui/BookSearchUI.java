@@ -18,10 +18,10 @@ public class BookSearchUI extends BaseUI{
 	@Override
 	public void execute() throws Exception {
 		
-		String id = memberVo.getId();
-		ILibraryUI ui = null;
 		while (true) {
-			int search = scanInt("1. 보유도서 목록 2. 제목으로 검색 3. 저자로 검색 4. 도서 대여 5. 이전 페이지 0. 종료\n");
+			ILibraryUI ui = null;
+			String id = memberVo.getId();
+			int search = scanInt("1. 보유도서 목록 2. 제목으로 검색 3. 저자로 검색 4. 도서 대여 5. 마이페이지 0. 종료\n");
 			
 			switch (search) {
 			case 1:
@@ -37,7 +37,8 @@ public class BookSearchUI extends BaseUI{
 				ui = new BookRentUI(memberVo);
 				break;
 			case 5:
-				return;
+				ui = new MemberPageUI(memberVo);
+				break;
 			case 0:
 				ui = new ExitUI();
 				break;

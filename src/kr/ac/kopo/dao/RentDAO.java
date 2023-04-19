@@ -75,6 +75,7 @@ public class RentDAO {
 		sql.append(" from t_b_status s1 ");
 		sql.append(" join t_book b1  on b1.reg_no = s1.reg_no ");
 		sql.append(" where rent_id = ? ");
+		sql.append(" order by rent_date, reg_no ");
 
 		try (Connection conn = new ConnectionFactory().getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {

@@ -28,18 +28,24 @@ public class SearchUI extends BaseUI {
 		String str = scanStr("검색할 내용을 입력하세요 : ");
 		List<BookVO> bookList = service.Search(torw, str);
 		
-		System.out.println("---------------------------------------------------------------");
-		System.out.println("도서번호\t제목\t저자\t출판사\t발행연도\t대출상태");
-		System.out.println("---------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------------------------");
+		System.out.printf("%4s\t%-20s\t%-15s\t\t%-15s\t%-10s\t%-10s\n", "도서번호", "제목", "저자", "출판사", "발행연도", "대출상태");
+		System.out.println("---------------------------------------------------------------------------------------------------------");
+		
 		
 		if(bookList == null || bookList.size() == 0) {
 			System.out.println("보유도서가 존재하지 않습니다");
 		} else {
 			for(BookVO book : bookList) {
-				System.out.println(book.getRegNo() + "\t" + book.getTitle() + "\t" + book.getWriter() + "\t" + book.getPublisher()  + "\t" + book.getIssueYear() + "\t" + book.getStatus());
+				System.out.printf(" %03d\t", book.getRegNo());
+				System.out.printf("%-20s\t", book.getTitle());
+				System.out.printf("%-15s\t", book.getWriter());
+				System.out.printf("%-15s\t", book.getPublisher());
+				System.out.printf("%-10d\t", book.getIssueYear());
+				System.out.printf("%-10s\n", book.getStatus());
 			}
 		}
-		System.out.println("---------------------------------------------------------------");
+		System.out.println("---------------------------------------------------------------------------------------------------------");
 	}
 
 }

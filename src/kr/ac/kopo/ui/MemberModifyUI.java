@@ -40,7 +40,7 @@ public class MemberModifyUI extends BaseUI {
 				switch (choice) {
 				case 1:
 					System.out.println("변경하실 비밀번호를 입력해 주세요.");
-					String pw2 = scanStr("비밀번호 : ");
+					pw = scanStr("비밀번호 : ");
 					StringBuilder sql = new StringBuilder();
 					sql.append("update t_member ");
 					sql.append(" set pw = ? ");
@@ -50,7 +50,7 @@ public class MemberModifyUI extends BaseUI {
 						Connection conn = new ConnectionFactory().getConnection();
 						PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 					) {
-						pstmt.setString(1, pw2);
+						pstmt.setString(1, pw);
 						pstmt.setString(2, id);
 						
 						pstmt.executeUpdate();
@@ -136,29 +136,8 @@ public class MemberModifyUI extends BaseUI {
 					}
 					break;
 				case 5 :
-					
-						int choice2 = scanInt("1. 도서검색 2. 회원정보 수정 3. 로그아웃 0. 종료\n");
-
-						switch (choice2) {
-							case 1:
-								;
-								break;
-							case 2:
-								ui = new MemberModifyUI(memberVo);
-								break;
-							case 3:
-								ui = new LibraryUI();
-								break;
-							case 0:
-								ui = new ExitUI();
-								break;
-						}
-						
-						if(ui != null) {
-							ui.execute();
-						} else {
-							System.out.println("잘못 입력하셨습니다");
-						}
+					ui = new MemberPageUI(memberVo);
+					ui.execute();
 					break;
 				case 0:
 					ui = new ExitUI();

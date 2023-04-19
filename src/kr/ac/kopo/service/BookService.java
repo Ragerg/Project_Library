@@ -30,9 +30,13 @@ public class BookService {
 		return bookDao.noCheck(regNo);
 	}
 
-	// 책 검색
+	// 책 검색- 제목, 저자
 	public List<BookVO> Search(String torw, String str) {
 		return bookDao.search(torw, str);
+	}
+	// 책 검색 - 도서번호
+	public List<BookVO> Search(int regNo) {
+		return bookDao.search(regNo);
 	}
 
 
