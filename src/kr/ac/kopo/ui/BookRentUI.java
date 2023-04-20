@@ -37,24 +37,23 @@ public class BookRentUI extends BaseUI{
 		int regNo = scanInt("대출하실 도서의 도서번호를 입력해 주세요 : ");
 		
 		if (!bookService.noCheck(regNo)) {
-			System.out.println("대출할 수 없는 도서입니다.");
-			System.out.println("다시 입력해 주세요.");
+			System.out.println("보유하지 않은 도서입니다.");
 			
-			regNo = scanInt("대출하실 도서의 도서번호를 입력해 주세요 : ");
-		};
+		} else {
 		
-		try {
-			RentVO rent = new RentVO();
-			rent.setRegNo(regNo);
-			rent.setRentId(id);
-			rentService.rentBook(rent);
-			
-			System.out.println("도서대출을 완료하였습니다");
-		} catch(Exception e) {
-			System.out.println("대출할 수 없는 도서입니다.");
-			execute();
+			try {
+				RentVO rent = new RentVO();
+				rent.setRegNo(regNo);
+				rent.setRentId(id);
+				rentService.rentBook(rent);
+				
+				System.out.println("도서대출을 완료하였습니다");
+				return;
+			} catch(Exception e) {
+				System.out.println("이미 대출 중인 도서입니다.");
+			}
 		}
-		
+		execute();
 		
 	}
 		

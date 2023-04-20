@@ -65,7 +65,7 @@ public class MemberPageUI extends BaseUI {
 		System.out.println("메뉴를 선택해 주세요.");
 
 			ILibraryUI ui = null;
-			int choice = scanInt("1. 도서검색 2. 대여하기 3. 반납하기 4. 회원정보 수정 5. 로그아웃 6. 회원탈퇴 0. 종료\n");
+			int choice = scanInt("1. 도서검색 2. 대출하기 3. 반납하기 4. 회원정보 수정 5. 로그아웃 6. 회원탈퇴 0. 종료\n");
 			switch (choice) {
 			case 1 :
 				ui = new BookSearchUI(memberVo);

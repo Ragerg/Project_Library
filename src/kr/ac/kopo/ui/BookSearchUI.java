@@ -21,7 +21,7 @@ public class BookSearchUI extends BaseUI{
 		while (true) {
 			ILibraryUI ui = null;
 			String id = memberVo.getId();
-			int search = scanInt("1. 보유도서 목록 2. 제목으로 검색 3. 저자로 검색 4. 도서 대여 5. 마이페이지 0. 종료\n");
+			int search = scanInt("1. 보유도서 목록 2. 제목으로 검색 3. 저자로 검색 4. 도서 대출 5. 마이페이지 0. 종료\n");
 			
 			switch (search) {
 			case 1:

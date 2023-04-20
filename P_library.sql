@@ -83,7 +83,7 @@ SELECT RENT_NO
   JOIN T_BOOK     B1   ON B1.REG_NO = S1.REG_NO;        
   
 
---도서정보 조회 / 대여테여블에 입력되어 대여번호가 생긴 도서는 대출중
+--도서정보 조회 / 대여테여블에  도서번호가 없으면 대출가능
 SELECT B1.REG_NO
       ,B1.TITLE
       ,B1.WRITER

@@ -125,8 +125,8 @@ public class BookModifyUI extends BaseUI {
 				
 				
 				int issueYear2 = scanInt("발행연도 : ");
-				while (issueYear2 > 9999 || issueYear2 < 999) {
-					System.out.println("발행연도는 4자리를 넘을 수 없습니다.");
+				while (issueYear2 > 9999 || issueYear2 <= 999) {
+					System.out.println("발행연도는 숫자 4자리입니다.");
 					System.out.println("다시 입력해주세요.");
 					issueYear2 = scanInt("발행연도 : ");
 				}

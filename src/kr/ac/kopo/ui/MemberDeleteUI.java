@@ -46,11 +46,15 @@ public class MemberDeleteUI extends BaseUI {
 				ILibraryUI ui = new LibraryUI();
 				ui.execute();
 			} catch (Exception e) {
-				System.out.println("대여중인 도서가 있는 경우 탈퇴할 수 없습니다.");
+				System.out.println("대출중인 도서가 있는 경우 탈퇴할 수 없습니다.");
+				System.out.println("마이페이지로 돌아갑니다.");
 				ILibraryUI ui = new MemberPageUI(memberVo);
 				ui.execute();
 			}
 
+		} else {
+			System.out.println("비밀번호가 다릅니다.");
+			System.out.println("마이페이지로 돌아갑니다.");
 		}
 	}
 }
