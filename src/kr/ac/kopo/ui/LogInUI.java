@@ -17,9 +17,9 @@ public class LogInUI extends BaseUI {
 	@Override
 	public void execute() throws Exception {
 
-		System.out.println("======================================");
+		System.out.println("\n\n======================================");
 		System.out.println("\t\t로그인");
-		System.out.println("======================================");
+		System.out.println("======================================\n");
 
 		String id = scanStr("아이디 : ");
 		String pw = scanStr("비밀번호 : ");
@@ -27,7 +27,7 @@ public class LogInUI extends BaseUI {
 		ILibraryUI ui = null;
 		if (memberService.logIn(id, pw)) {
 			memberVo.setId(id);
-			System.out.println("로그인 완료");
+			System.out.println("\n로그인 완료");
 
 			if (id.equals("admin01")) {
 				
@@ -37,7 +37,7 @@ public class LogInUI extends BaseUI {
 			} else {
 				
 				System.out.println( id + " 님 반갑습니다.");
-				System.out.println( "메뉴를 선택해 주세요.");
+				System.out.println( "\n메뉴를 선택해 주세요.");
 
 				while (true) {
 					int choice = scanInt("1. 도서검색 2. 마이페이지 3. 로그아웃 0. 종료\n");
@@ -60,7 +60,7 @@ public class LogInUI extends BaseUI {
 					if (ui != null) {
 						ui.execute();
 					} else {
-						System.out.println("잘못 입력하셨습니다");
+						System.out.println("\n!잘못 입력하셨습니다");
 					}
 				}
 			}
@@ -87,7 +87,7 @@ public class LogInUI extends BaseUI {
 				if (ui != null) {
 					ui.execute();
 				} else {
-					System.out.println("잘못 입력하셨습니다");
+					System.out.println("\n!잘못 입력하셨습니다");
 				}
 			}
 		}

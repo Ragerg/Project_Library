@@ -33,15 +33,15 @@ public class MemberPageUI extends BaseUI {
 		MemberVO member = memberService.MemberPage(id);
 		List<RentVO> rentList = rentService.rentMember(id);
 
-		System.out.println("============================================================");
+		System.out.println("\n\n============================================================");
 		System.out.println("\t\t\t마이페이지");
-		System.out.println("============================================================");
+		System.out.println("============================================================\n");
 
 		System.out.println(memberVo.getId() + "님");
 		System.out.println("이름 : " + member.getName());
 		System.out.println("주소 : " + member.getAddress());
-		System.out.println("핸드폰 번호 : " + member.getPhoneNum());
-		System.out.println("\n<< 대여목록 >>");
+		System.out.println("전화번호 : " + member.getPhoneNum());
+		System.out.println("\n<< 대출목록 >>");
 		System.out.println("------------------------------------------------------------");
 		System.out.printf("%4s\t%-20s\t%-10s\t%-10s\n", "도서번호", "제목", "대출일", "반납예정일");
 		System.out.println("------------------------------------------------------------");

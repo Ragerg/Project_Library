@@ -16,9 +16,9 @@ public class BookAddUI extends BaseUI {
 	@Override
 	public void execute() throws Exception {
 		
-		System.out.println("======================================");
+		System.out.println("\n\n======================================");
 		System.out.println("\t도서정보 입력");
-		System.out.println("======================================");
+		System.out.println("======================================\n");
 		
 		String title = scanStr("제목 : ");
 		String writer = scanStr("저자 : ");
@@ -26,8 +26,8 @@ public class BookAddUI extends BaseUI {
 		int issueYear = scanInt("발행연도 : ");
 		
 		while (issueYear > 9999 || issueYear <= 999) {
-			System.out.println("발행연도는 숫자 4자리입니다.");
-			System.out.println("다시 입력해주세요.");
+			System.out.println("\n!발행연도는 숫자 4자리입니다.");
+			System.out.println("다시 입력해주세요.\n");
 			issueYear = scanInt("발행연도 : ");
 		}
 		
@@ -39,7 +39,7 @@ public class BookAddUI extends BaseUI {
 		
 		bookService.insertBook(book);
 		
-		System.out.println("도서추가를 완료하였습니다");
+		System.out.println("\n도서정보 추가를 완료하였습니다");
 		
 	}
 

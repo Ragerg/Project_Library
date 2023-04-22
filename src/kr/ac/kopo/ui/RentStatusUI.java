@@ -18,6 +18,8 @@ public class RentStatusUI extends BaseUI {
 	public void execute() throws Exception {
 		List<RentVO> rentList = rentService.rentAll();
 		
+		System.out.println("\n\n======================================================================================");
+		System.out.println("\t<< 대출현황 >>");
 		System.out.println("--------------------------------------------------------------------------------------");
 		System.out.printf("%4s\t%4s\t%-20s\t%-10s\t%-10s\t%-10s\n", "대여번호","도서번호", "제목", "대출회원", "대출일", "반납예정일");
 		System.out.println("--------------------------------------------------------------------------------------");
@@ -38,6 +40,6 @@ public class RentStatusUI extends BaseUI {
 //			+ rent.getTitle() + "\t\t" + rent.getRentId() + "\t" + rent.getRentDate() + "\t" + rent.getReturnDate());
 			}
 		}
-		System.out.println("--------------------------------------------------------------------------------------");
+		System.out.println("--------------------------------------------------------------------------------------\n");
 	}
 }

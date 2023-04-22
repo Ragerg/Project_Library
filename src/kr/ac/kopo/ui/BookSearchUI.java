@@ -21,7 +21,8 @@ public class BookSearchUI extends BaseUI{
 		while (true) {
 			ILibraryUI ui = null;
 			String id = memberVo.getId();
-			int search = scanInt("1. 보유도서 목록 2. 제목으로 검색 3. 저자로 검색 4. 도서 대출 5. 마이페이지 0. 종료\n");
+			System.out.println("\n메뉴를 선택해 주세요.");
+			int search = scanInt("1. 보유도서 목록 2. 제목으로 검색 3. 저자로 검색 4. 출판사로 검색 5. 도서 대출 6. 마이페이지 0. 종료\n");
 			
 			switch (search) {
 			case 1:
@@ -33,10 +34,13 @@ public class BookSearchUI extends BaseUI{
 			case 3:
 				ui = new SearchUI("writer");
 				break;
-			case 4 :
+			case 4:
+				ui = new SearchUI("publisher");
+				break;
+			case 5 :
 				ui = new BookRentUI(memberVo);
 				break;
-			case 5:
+			case 6:
 				ui = new MemberPageUI(memberVo);
 				break;
 			case 0:
