@@ -27,10 +27,10 @@ public class JoinMemberUI extends BaseUI{
 			
 			id = scanStr("아이디 : ");
 		};
-		String pw = scanStr("\n비밀번호 입력 : ");
+		String pw = scanStr("비밀번호 입력 : ");
 		String pw2 = scanStr("비밀번호 확인 : ");
 		if(!pw.equals(pw2)) {
-			System.out.println("\n!비밀번호를 동일하게 입력해 주세요.");
+			System.out.println("\n!비밀번호를 동일하게 입력해 주세요.\n");
 			pw = scanStr("비밀번호 입력 : ");
 			pw2 = scanStr("비밀번호 확인 : ");
 		}
@@ -54,7 +54,7 @@ public class JoinMemberUI extends BaseUI{
 		
 		memberService.insertMember(member);
 		
-		System.out.println("회원가입을 완료하였습니다\n\n");
+		System.out.println("\n회원가입을 완료하였습니다.");
 		
 	}
 

@@ -36,6 +36,10 @@ public class RentService {
 		rentDao.returnBook(rent);
 	}
 
+	public boolean returnBookCheck(RentVO rent) throws Exception{
+		return rentDao.returnBookCheck(rent);
+	}
+
 
 
 }

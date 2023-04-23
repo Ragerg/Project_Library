@@ -35,7 +35,7 @@ public class MemberModifyUI extends BaseUI {
 				
 				System.out.println("\n\n수정할 사항을 선택해 주세요.");
 
-				int choice = scanInt("1. 비밀번호 2. 이름 3. 주소 4. 핸드폰 번호 5. 수정완료 0. 종료\n");
+				int choice = scanInt("1. 비밀번호 2. 이름 3. 주소 4. 전화번호 5. 수정완료 0. 종료\n");
 
 				switch (choice) {
 				case 1:

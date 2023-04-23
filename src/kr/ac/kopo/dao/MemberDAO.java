@@ -74,7 +74,7 @@ public class MemberDAO {
 			
 			logIn = rs.next();
 			
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		

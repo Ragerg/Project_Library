@@ -20,16 +20,16 @@ public class BookDeleteUI extends BaseUI {
 
 			ILibraryUI ui = null;
 
-			int regNo = scanInt("삭제할 도서의 도서번호를 입력해 주세요.(0 입력 시 이전 페이지) : ");
+			int regNo = scanInt("\n삭제할 도서의 도서번호를 입력해 주세요.(0 입력 시 이전 페이지) : ");
 
-			if (!bookService.noCheck(regNo)) {
+			while (!bookService.noCheck(regNo)) {
 				if(regNo == 0) {
 					return;
 				}
 				System.out.println("\n!없는 도서입니다.");
 				System.out.println("다시 입력해 주세요.");
 
-				regNo = scanInt("삭제할 도서의 도서번호를 입력해 주세요.(0 입력 시 이전 페이지) : ");
+				regNo = scanInt("\n삭제할 도서의 도서번호를 입력해 주세요.(0 입력 시 이전 페이지) : ");
 			};
 			
 

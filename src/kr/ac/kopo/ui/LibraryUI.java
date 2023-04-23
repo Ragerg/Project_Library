@@ -11,7 +11,7 @@ public class LibraryUI extends BaseUI {
 		System.out.println("1. 로그인");
 		System.out.println("2. 회원가입");
 		System.out.println("0. 종료");
-		System.out.print("원하는 항목을 선택하세요 : ");
+		System.out.print("\n원하는 항목을 선택하세요 : ");
 		Scanner sc = new Scanner(System.in);
 		int type = sc.nextInt();
 		sc.nextLine();

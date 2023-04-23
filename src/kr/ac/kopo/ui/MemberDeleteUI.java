@@ -36,6 +36,7 @@ public class MemberDeleteUI extends BaseUI {
 			sql.append("delete t_member ");
 			sql.append(" where id = ? ");
 
+			ILibraryUI ui = null;
 			try (Connection conn = new ConnectionFactory().getConnection();
 					PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 				pstmt.setString(1, id);
@@ -43,12 +44,12 @@ public class MemberDeleteUI extends BaseUI {
 				pstmt.executeUpdate();
 
 				System.out.println("\n탈퇴되었습니다.");
-				ILibraryUI ui = new LibraryUI();
-				ui.execute();
+				ui = new LibraryUI();
 			} catch (Exception e) {
 				System.out.println("\n!대출중인 도서가 있는 경우 탈퇴할 수 없습니다.");
 				System.out.println("마이페이지로 돌아갑니다.");
-				ILibraryUI ui = new MemberPageUI(memberVo);
+				ui = new MemberPageUI(memberVo);
+			} finally {
 				ui.execute();
 			}
 

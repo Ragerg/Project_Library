@@ -79,7 +79,7 @@ public class RentDAO {
 		sql.append(" order by rent_date, reg_no ");
 
 		try (Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+			 PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 
 			pstmt.setString(1, id);
 			ResultSet rs = pstmt.executeQuery();
@@ -105,19 +105,47 @@ public class RentDAO {
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("delete from t_b_status where rent_id = ? and reg_no = ? ");
-		sql.append("  ");
+		
+		try (Connection conn = new ConnectionFactory().getConnection();
+			 PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		) {
 
-		Connection conn = new ConnectionFactory().getConnection();
-		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-
-		pstmt.setString(1, rent.getRentId());
-		pstmt.setInt(2, rent.getRegNo());
-
-		pstmt.executeUpdate();
-
-		pstmt.close();
-		conn.close();
-
+			pstmt.setString(1, rent.getRentId());
+			pstmt.setInt(2, rent.getRegNo());
+	
+			pstmt.executeUpdate();
+			
+			
+//			pstmt.close();
+//			conn.close();
+//		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean returnBookCheck(RentVO rent) throws Exception {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("select * from t_b_status where rent_id = ? and reg_no = ? ");
+		boolean re = true;
+		
+		try (Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				) {
+			
+			pstmt.setString(1, rent.getRentId());
+			pstmt.setInt(2, rent.getRegNo());
+			
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			re = rs.next();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return re;
 	}
 
 }

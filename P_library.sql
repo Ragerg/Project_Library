@@ -31,9 +31,10 @@ CREATE TABLE T_BOOK(
                    ,PUBLISHER   VARCHAR2(100)
                    ,ISSUE_YEAR  NUMBER(4)
                    );
+CREATE SEQUENCE SEQ_T_BOOK_REG_NO NOCACHE;                   
                    
                    
---대여 테이블 생성                  
+--대출 테이블 생성                  
 CREATE TABLE T_B_STATUS (
                          RENT_NO     NUMBER(5)      PRIMARY KEY     
                         ,REG_NO      NUMBER(5)      UNIQUE     
@@ -45,7 +46,8 @@ CREATE TABLE T_B_STATUS (
                                                     REFERENCES   T_MEMBER(ID)
                         ,RENT_DATE   VARCHAR2(10)   DEFAULT TO_CHAR(SYSDATE    , 'YYYY-MM-DD')
                         ,RETURN_DATE VARCHAR2(10)   DEFAULT TO_CHAR(SYSDATE +14, 'YYYY-MM-DD')
-                       );   
+                       ); 
+CREATE SEQUENCE SEQ_T_B_STATUS_RENT_NO NOCACHE;                        
                        
                        
                        

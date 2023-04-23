@@ -37,13 +37,17 @@ public class BookRetrunUI extends BaseUI{
 			RentVO rent = new RentVO();
 			rent.setRegNo(regNo);
 			rent.setRentId(id);
-			rentService.returnBook(rent);
 			
-			System.out.println("\n도서반납을 완료하였습니다");
+			if(rentService.returnBookCheck(rent)) {
+				rentService.returnBook(rent);
+				System.out.println("\n도서반납을 완료하였습니다");
+			} else {
+				System.out.println("\n!반납할 수 없는 도서입니다.");
+				execute();
+				
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("\n!반납할 수 없는 도서입니다.");
-			execute();
 		}
 		
 		

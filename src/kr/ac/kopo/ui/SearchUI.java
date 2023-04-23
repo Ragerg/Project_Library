@@ -41,11 +41,11 @@ public class SearchUI extends BaseUI {
 		} else {
 			for(BookVO book : bookList) {
 				System.out.printf(" %03d\t", book.getRegNo());
-				System.out.printf("%-10s\n", book.getStatus());
+				System.out.printf("%-10s\t", book.getStatus());
 				System.out.printf("%-20s\t", book.getTitle());
 				System.out.printf("%-15s\t", book.getWriter());
 				System.out.printf("%-15s\t", book.getPublisher());
-				System.out.printf("%-10d\t", book.getIssueYear());
+				System.out.printf("%-10d\n", book.getIssueYear());
 			}
 		}
 		System.out.println("---------------------------------------------------------------------------------------------------------");

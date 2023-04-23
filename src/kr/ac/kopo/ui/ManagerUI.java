@@ -18,7 +18,7 @@ public class ManagerUI extends BaseUI {
 		while (true) {
 			System.out.println("\n메뉴를 선택해 주세요.");
 			System.out.println("1. 보유도서 목록 2. 제목으로 검색 3. 저자로 검색 4. 출판사로 검색 ");
-			int manage = scanInt("5.도서정보 추가 6. 도서정보 수정 7. 도서정보 삭제 8. 대출현황 9. 로그아웃 0. 종료\n");
+			int manage = scanInt("5. 도서정보 추가 6. 도서정보 수정 7. 도서정보 삭제 8. 대출현황 9. 로그아웃 0. 종료\n");
 			
 			switch (manage) {
 			case 1:

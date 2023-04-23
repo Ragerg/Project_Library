@@ -68,8 +68,8 @@ public class LogInUI extends BaseUI {
 		} else {
 
 			while (true) {
-				System.out.println("아이디 또는 비밀번호가 틀렸습니다.");
-				System.out.println("다시 입력해 주세요.");
+				System.out.println("\n!아이디 또는 비밀번호가 틀렸습니다.");
+				System.out.println("다시 입력해 주세요.\n");
 				int again = scanInt("1. 로그인 2. 메인으로 나가기 0. 종료\n");
 
 				switch (again) {
