@@ -1,72 +1,70 @@
 package kr.ac.kopo.vo;
 
 public class MemberVO {
-	
-	private String id;
-	private String pw;
-	private String name;
-	private String address;
-	private String phoneNum;
-	
-	public MemberVO() {
 
-	}
+    private String id;
+    private String pw;
+    private String name;
+    private String address;
+    private String phoneNum;
 
-	public MemberVO(String id, String pw, String name, String address, String phoneNum) {
-		super();
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.address = address;
-		this.phoneNum = phoneNum;
-	}
+    public MemberVO() {
 
-	public String getId() {
-		return id;
-	}
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public MemberVO(String id, String pw, String name, String address, String phoneNum) {
+        super();
+        this.id = id;
+        this.pw = pw;
+        this.name = name;
+        this.address = address;
+        this.phoneNum = phoneNum;
+    }
 
-	public String getPw() {
-		return pw;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getPw() {
+        return pw;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getPhoneNum() {
-		return phoneNum;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	@Override
-	public String toString() {
-		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", address=" + address + ", phoneNum="
-				+ phoneNum + "]";
-	}
-	
-	
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", address=" + address + ", phoneNum="
+                + phoneNum + "]";
+    }
 
 }

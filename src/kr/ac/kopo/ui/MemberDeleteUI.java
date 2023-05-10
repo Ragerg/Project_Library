@@ -9,53 +9,53 @@ import kr.ac.kopo.vo.MemberVO;
 
 public class MemberDeleteUI extends BaseUI {
 
-	private MemberService memberService;
-	private MemberVO memberVo;
+    private MemberService memberService;
+    private MemberVO memberVo;
 
-	public MemberDeleteUI() {
-		memberService = new MemberService();
-		memberVo = new MemberVO();
+    public MemberDeleteUI() {
+        memberService = new MemberService();
+        memberVo = new MemberVO();
 
-	}
+    }
 
-	public MemberDeleteUI(MemberVO memberVo) {
-		this();
-		this.memberVo = memberVo;
-	}
+    public MemberDeleteUI(MemberVO memberVo) {
+        this();
+        this.memberVo = memberVo;
+    }
 
-	@Override
-	public void execute() throws Exception {
+    @Override
+    public void execute() throws Exception {
 
-		String id = memberVo.getId();
-		System.out.println("\n비밀번호를 한 번 더 입력해 주세요.");
-		String pw = scanStr("비밀번호 : ");
+        String id = memberVo.getId();
+        System.out.println("\n비밀번호를 한 번 더 입력해 주세요.");
+        String pw = scanStr("비밀번호 : ");
 
-		if (memberService.logIn(id, pw)) {
+        if (memberService.logIn(id, pw)) {
 
-			StringBuilder sql = new StringBuilder();
-			sql.append("delete t_member ");
-			sql.append(" where id = ? ");
+            StringBuilder sql = new StringBuilder();
+            sql.append("delete t_member ");
+            sql.append(" where id = ? ");
 
-			ILibraryUI ui = null;
-			try (Connection conn = new ConnectionFactory().getConnection();
-					PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
-				pstmt.setString(1, id);
+            ILibraryUI ui = null;
+            try (Connection conn = new ConnectionFactory().getConnection();
+                    PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+                pstmt.setString(1, id);
 
-				pstmt.executeUpdate();
+                pstmt.executeUpdate();
 
-				System.out.println("\n탈퇴되었습니다.");
-				ui = new LibraryUI();
-			} catch (Exception e) {
-				System.out.println("\n!대출중인 도서가 있는 경우 탈퇴할 수 없습니다.");
-				System.out.println("마이페이지로 돌아갑니다.");
-				ui = new MemberPageUI(memberVo);
-			} finally {
-				ui.execute();
-			}
+                System.out.println("\n탈퇴되었습니다.");
+                ui = new LibraryUI();
+            } catch (Exception e) {
+                System.out.println("\n!대출중인 도서가 있는 경우 탈퇴할 수 없습니다.");
+                System.out.println("마이페이지로 돌아갑니다.");
+                ui = new MemberPageUI(memberVo);
+            } finally {
+                ui.execute();
+            }
 
-		} else {
-			System.out.println("\n!비밀번호가 다릅니다.");
-			System.out.println("마이페이지로 돌아갑니다.");
-		}
-	}
+        } else {
+            System.out.println("\n!비밀번호가 다릅니다.");
+            System.out.println("마이페이지로 돌아갑니다.");
+        }
+    }
 }

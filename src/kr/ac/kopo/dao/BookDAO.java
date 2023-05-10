@@ -11,163 +11,165 @@ import kr.ac.kopo.vo.BookVO;
 
 public class BookDAO {
 
-	// 책 추가
-	public void insertBook(BookVO book) {
+    // 책 추가
+    public void insertBook(BookVO book) {
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("insert into t_book(reg_no, title, writer, publisher, issue_year) ");
-		sql.append(" values(seq_t_book_reg_no.nextval, ?, ?, ?, ?) ");
+        StringBuilder sql = new StringBuilder();
+        sql.append("insert into t_book(reg_no, title, writer, publisher, issue_year) ");
+        sql.append(" values(seq_t_book_reg_no.nextval, ?, ?, ?, ?) ");
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+        try (Connection conn = new ConnectionFactory().getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 
-			pstmt.setString(1, book.getTitle());
-			pstmt.setString(2, book.getWriter());
-			pstmt.setString(3, book.getPublisher());
-			pstmt.setInt(4, book.getIssueYear());
+            pstmt.setString(1, book.getTitle());
+            pstmt.setString(2, book.getWriter());
+            pstmt.setString(3, book.getPublisher());
+            pstmt.setInt(4, book.getIssueYear());
 
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	// 전체 도서 
-	public List<BookVO> selectAllBook() {
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-		List<BookVO> bookList = new ArrayList<>();
+    // 전체 도서
+    public List<BookVO> selectAllBook() {
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("select b1.reg_no, b1.title, b1.writer, publisher, issue_year, case when s1.rent_no is null then '대출가능' else '대출중' end status ");
-		sql.append(" from t_book b1 ");
-		sql.append(" left outer join t_b_status s1      on s1.reg_no = b1.reg_no ");
-		sql.append(" order by b1.title");
+        List<BookVO> bookList = new ArrayList<>();
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+        StringBuilder sql = new StringBuilder();
+        sql.append(
+                "select b1.reg_no, b1.title, b1.writer, publisher, issue_year, case when s1.rent_no is null then '대출가능' else '대출중' end status ");
+        sql.append(" from t_book b1 ");
+        sql.append(" left outer join t_b_status s1      on s1.reg_no = b1.reg_no ");
+        sql.append(" order by b1.title");
 
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int regNo = rs.getInt("reg_no");
-				String title = rs.getString("title");
-				String writer = rs.getString("writer");
-				String publisher = rs.getString("publisher");
-				int issueYear = rs.getInt("issue_Year");
-				String status = rs.getString("status");
-				 
+        try (Connection conn = new ConnectionFactory().getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 
-				BookVO book = new BookVO(regNo, title, writer, publisher, issueYear, status);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int regNo = rs.getInt("reg_no");
+                String title = rs.getString("title");
+                String writer = rs.getString("writer");
+                String publisher = rs.getString("publisher");
+                int issueYear = rs.getInt("issue_Year");
+                String status = rs.getString("status");
 
-				bookList.add(book);
+                BookVO book = new BookVO(regNo, title, writer, publisher, issueYear, status);
 
-			}
+                bookList.add(book);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            }
 
-		return bookList;
-	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	//장서번호 체크
-	public boolean noCheck(int regNo) {
+        return bookList;
+    }
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("select reg_no from t_book where reg_no = ? ");
-		boolean nocheck = false;
+    // 장서번호 체크
+    public boolean noCheck(int regNo) {
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
-			pstmt.setInt(1, regNo);
+        StringBuilder sql = new StringBuilder();
+        sql.append("select reg_no from t_book where reg_no = ? ");
+        boolean nocheck = false;
 
-			ResultSet rs = pstmt.executeQuery();
+        try (Connection conn = new ConnectionFactory().getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+            pstmt.setInt(1, regNo);
 
-			nocheck = rs.next();
+            ResultSet rs = pstmt.executeQuery();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            nocheck = rs.next();
 
-		return nocheck;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	}
+        return nocheck;
 
-	// 도서검색 - 제목, 저자
-	public List<BookVO> search(String torw, String str) {
+    }
 
-		List<BookVO> bookList = new ArrayList<>();
+    // 도서검색 - 제목, 저자
+    public List<BookVO> search(String torw, String str) {
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("select b1.reg_no, b1.title, b1.writer, publisher, issue_year, case when s1.rent_no is null then '대출가능' else '대출중' end status  ");
-		sql.append(" from t_book b1 ");
-		sql.append(" left outer join t_b_status s1      on s1.reg_no = b1.reg_no ");
-		sql.append(" where ");
-		sql.append(torw);
-		sql.append(" like ? ");
-		sql.append(" order by b1.title ");
+        List<BookVO> bookList = new ArrayList<>();
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+        StringBuilder sql = new StringBuilder();
+        sql.append(
+                "select b1.reg_no, b1.title, b1.writer, publisher, issue_year, case when s1.rent_no is null then '대출가능' else '대출중' end status  ");
+        sql.append(" from t_book b1 ");
+        sql.append(" left outer join t_b_status s1      on s1.reg_no = b1.reg_no ");
+        sql.append(" where ");
+        sql.append(torw);
+        sql.append(" like ? ");
+        sql.append(" order by b1.title ");
 
-			pstmt.setString(1, "%" + str + "%");
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int regNo = rs.getInt("reg_no");
-				String title = rs.getString("title");
-				String writer = rs.getString("writer");
-				String publisher = rs.getString("publisher");
-				int issueYear = rs.getInt("issue_Year");
-				String status = rs.getString("status");
+        try (Connection conn = new ConnectionFactory().getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 
-				BookVO book = new BookVO(regNo, title, writer, publisher, issueYear, status);
+            pstmt.setString(1, "%" + str + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int regNo = rs.getInt("reg_no");
+                String title = rs.getString("title");
+                String writer = rs.getString("writer");
+                String publisher = rs.getString("publisher");
+                int issueYear = rs.getInt("issue_Year");
+                String status = rs.getString("status");
 
-				bookList.add(book);
+                BookVO book = new BookVO(regNo, title, writer, publisher, issueYear, status);
 
-			}
+                bookList.add(book);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            }
 
-		return bookList;
-	}
-	
-	// 도서검색 - 도서번호
-	public List<BookVO> search(int regNo) {
-		List<BookVO> bookList = new ArrayList<>();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("select b1.reg_no, b1.title, b1.writer, publisher, issue_year, case when s1.rent_no is null then '대출가능' else '대출중' end status  ");
-		sql.append(" from t_book b1 ");
-		sql.append(" left outer join t_b_status s1      on s1.reg_no = b1.reg_no ");
-		sql.append(" where b1.reg_no ");
-		sql.append(" like ? ");
-		sql.append(" order by b1.title ");
+        return bookList;
+    }
 
-		try (Connection conn = new ConnectionFactory().getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+    // 도서검색 - 도서번호
+    public List<BookVO> search(int regNo) {
+        List<BookVO> bookList = new ArrayList<>();
 
-			pstmt.setInt(1, regNo);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				regNo = rs.getInt("reg_no");
-				String title = rs.getString("title");
-				String writer = rs.getString("writer");
-				String publisher = rs.getString("publisher");
-				int issueYear = rs.getInt("issue_Year");
-				String status = rs.getString("status");
+        StringBuilder sql = new StringBuilder();
+        sql.append(
+                "select b1.reg_no, b1.title, b1.writer, publisher, issue_year, case when s1.rent_no is null then '대출가능' else '대출중' end status  ");
+        sql.append(" from t_book b1 ");
+        sql.append(" left outer join t_b_status s1      on s1.reg_no = b1.reg_no ");
+        sql.append(" where b1.reg_no ");
+        sql.append(" like ? ");
+        sql.append(" order by b1.title ");
 
-				BookVO book = new BookVO(regNo, title, writer, publisher, issueYear, status);
+        try (Connection conn = new ConnectionFactory().getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 
-				bookList.add(book);
+            pstmt.setInt(1, regNo);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                regNo = rs.getInt("reg_no");
+                String title = rs.getString("title");
+                String writer = rs.getString("writer");
+                String publisher = rs.getString("publisher");
+                int issueYear = rs.getInt("issue_Year");
+                String status = rs.getString("status");
 
-			}
+                BookVO book = new BookVO(regNo, title, writer, publisher, issueYear, status);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+                bookList.add(book);
 
-		return bookList;
-	}
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return bookList;
+    }
 
 }
